@@ -35,7 +35,7 @@ const Login = () => {
   };
 
   return (
-    <div style={{ backgroundColor: LinearGradient }}>
+    <div style={{ backgroundImage: LinearGradient }}>
       <Container
         component={"main"}
         maxWidth="xs"
