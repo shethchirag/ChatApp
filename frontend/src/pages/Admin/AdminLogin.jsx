@@ -13,14 +13,18 @@ import {
 import { LinearGradient } from "../../components/Layout/constants/Color";
 import { useInputValidation } from "6pp";
 import { validateUsername } from "../../lib/validators";
+import { Navigate } from "react-router-dom";
+const isAdmin = true;
 
 const AdminLogin = () => {
   const secretKey = useInputValidation("");
-
   const submitHandle = (e) => {
     e.preventDefault();
     console.log("submit");
   };
+  if (isAdmin) {
+    return <Navigate to="/admin/dashboard" />;
+  }
   return (
     <div style={{ backgroundImage: LinearGradient }}>
       <Container
@@ -51,7 +55,7 @@ const AdminLogin = () => {
               <TextField
                 required
                 fullWidth
-                label="Password"
+                label="Secret Key"
                 margin="normal"
                 variant="outlined"
                 type="password"
