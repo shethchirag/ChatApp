@@ -9,8 +9,8 @@ import {
   Filler,
   ArcElement,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
-import { Purple, PurpleLight } from "../Layout/constants/Color";
+import { Doughnut, Line } from "react-chartjs-2";
+import { Orange, Purple, PurpleLight } from "../Layout/constants/Color";
 import { getLast7Days } from "../../lib/Features";
 
 ChartJS.register(
@@ -64,8 +64,37 @@ const LineChart = ({ value = [] }) => {
   return <Line data={data} options={LineChartOptions} />;
 };
 
-const DoughnutChart = () => {
-  return <div>Charts</div>;
+const DoughnutChartOptions = {
+  responsive: true,
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
+  cutout: 80,
+};
+
+const DoughnutChart = ({ value = [], labels = [] }) => {
+  const data = {
+    labels,
+    datasets: [
+      {
+        data: value,
+        label: "Total Chats vs Group Chats",
+        backgroundColor: [PurpleLight, Orange],
+        borderColor: [Purple, Orange],
+        offset: 40,
+      },
+    ],
+  };
+
+  return (
+    <Doughnut
+      style={{ zIndex: 10 }}
+      data={data}
+      options={DoughnutChartOptions}
+    />
+  );
 };
 
 export { LineChart, DoughnutChart };
